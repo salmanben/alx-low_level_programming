@@ -1,7 +1,7 @@
-Bit Manipulation Project
+## Bit Manipulation Project
 This project focuses on C tasks that are designed to help users learn about bit manipulation.
 
-Tasks Completed:
+## Tasks Completed:
 Task 0.0 - 'binary_to_uint': This task includes a function that converts a binary number to an unsigned int.
 
 Task 1.1 - 'print_binary': In this task, you'll find a function that prints the binary representation of a number.
