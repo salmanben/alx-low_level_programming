@@ -18,19 +18,19 @@ void hash_table_print(const hash_table_t *ht)
     unsigned long int i;
     hash_node_t *ptr;
     int first_index;
-    
+
     if (ht == NULL)
 	return;
     first_index = 0;
     printf("{");
     for (i = 0; i < ht->size; i++)
-    {   
+    {
 	if (ht->array[i] != NULL && first_index == 1)
            printf(", ");
         ptr = ht->array[i];
         while (ptr != NULL)
         {
-	    first_index = 1;	
+	    first_index = 1;
             printf("'%s': '%s'", ptr->key, ptr->value);
             ptr = ptr->next;
             if (ptr != NULL)
