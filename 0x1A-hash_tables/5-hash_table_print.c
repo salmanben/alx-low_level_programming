@@ -18,7 +18,9 @@ void hash_table_print(const hash_table_t *ht)
     unsigned long int i;
     hash_node_t *ptr;
     int first_index;
-
+    
+    if (ht == NULL)
+	return;
     first_index = 0;
     printf("{");
     for (i = 0; i < ht->size; i++)
