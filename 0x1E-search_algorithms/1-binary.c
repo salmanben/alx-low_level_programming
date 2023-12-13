@@ -1,37 +1,60 @@
 #include "search_algos.h"
 
 /**
- * binary_search - Searches for a value in a sorted array using binary search
- * @array: Pointer to the first element of the sorted array
- * @size: Number of elements in the array
- * @value: Value to search for in the array
+ * print_array - Prints the contents of an array.
+ * @array: the array to print.
+ * @left: The left index.
+ * @right: The right index.
+ */
+void print_array(int *array, size_t left, size_t right)
+{
+	size_t i;
+
+	if (array)
+	{
+		printf("Searching in array: ");
+		for (i = left; i < left + (right - left + 1); i++)
+			printf("%d%s", *(array + i), i < left + (right - left) ? ", " : "\n");
+	}
+}
+
+/**
+ * binary_search_index - Searches a value in a sorted array using
+ * a binary search.
+ * @array: The array to search in.
+ * @l: The left index of the array.
+ * @r: The right index of the array.
+ * @value: The value to look for.
  *
- * Return: If value is found, return the index where the value is located, otherwise return -1
+ * Return: The first index of the value in the array, otherwise -1.
+ */
+int binary_search_index(int *array, size_t l, size_t r, int value)
+{
+	size_t m;
+
+	if (!array)
+		return (-1);
+	print_array(array, l, r);
+	m = l + ((r - l) / 2);
+	if (l == r)
+		return (*(array + m) == value ? (int)m : -1);
+	if (value < *(array + m))
+		return (binary_search_index(array, l, m - 1, value));
+	else if (value == *(array + m))
+		return ((int)m);
+	else
+		return (binary_search_index(array, m + 1, r, value));
+}
+
+/**
+ * binary_search - Searches a value in a sorted array using a binary search.
+ * @array: The array to search in.
+ * @size: The length of the array.
+ * @value: The value to search for.
+ *
+ * Return: The index of the value in the array, otherwise -1.
  */
 int binary_search(int *array, size_t size, int value)
 {
-    size_t left,right, i;
-    
-    left = 0;
-    right = size - 1;
-    while (left <= right) {
-        printf("Searching in array: ");
-        for (i = left; i <= right; i++)
-        {
-            printf("%d", array[i]);
-            if (i + 1 != size)
-                printf(", ");
-        }
-        printf("\n");
-        size_t mid = left + (right - left) / 2;
-        if (array[mid] == value)
-            return mid;
-
-        if (array[mid] < value)
-            left = mid + 1;
-        else
-            right = mid - 1;
-    }
-
-    return (-1);
+	return (binary_search_index(array, 0, size - 1, value));
 }
